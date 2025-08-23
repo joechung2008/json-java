@@ -4,8 +4,6 @@ package com.github.jsonjava;
  * Represents a parsed JSON null token.
  */
 public class NullToken extends Token {
-  private final Object value = null;
-
   /**
    * Constructs a NullToken with the given skip value.
    *
@@ -21,7 +19,7 @@ public class NullToken extends Token {
    * @return null
    */
   public Object getValue() {
-    return value;
+    return null;
   }
 
   /**
