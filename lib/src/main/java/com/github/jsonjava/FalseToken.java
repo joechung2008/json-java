@@ -4,6 +4,8 @@ package com.github.jsonjava;
  * Represents a parsed JSON false token.
  */
 public class FalseToken extends Token {
+  private final Boolean value = false;
+
   /**
    * Constructs a FalseToken with the given skip value.
    *
@@ -11,6 +13,15 @@ public class FalseToken extends Token {
    */
   public FalseToken(int skip) {
     super(skip);
+  }
+
+  /**
+   * Returns the value of this token.
+   *
+   * @return false
+   */
+  public Boolean getValue() {
+    return value;
   }
 
   /**

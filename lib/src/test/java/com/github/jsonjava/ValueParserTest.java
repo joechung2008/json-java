@@ -16,6 +16,7 @@ class ValueParserTest {
         Token token = JSONParser.parse("false");
         assertTrue(token instanceof FalseToken);
         assertEquals(5, token.skip);
+        assertEquals(false, ((FalseToken) token).getValue());
     }
 
     /**
@@ -26,6 +27,7 @@ class ValueParserTest {
         Token token = JSONParser.parse("null");
         assertTrue(token instanceof NullToken);
         assertEquals(4, token.skip);
+        assertNull(((NullToken) token).getValue());
     }
 
     /**
@@ -36,6 +38,7 @@ class ValueParserTest {
         Token token = JSONParser.parse("true");
         assertTrue(token instanceof TrueToken);
         assertEquals(4, token.skip);
+        assertEquals(true, ((TrueToken) token).getValue());
     }
 
     /**

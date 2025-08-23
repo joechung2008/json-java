@@ -4,6 +4,8 @@ package com.github.jsonjava;
  * Represents a parsed JSON true token.
  */
 public class TrueToken extends Token {
+  private final Boolean value = true;
+
   /**
    * Constructs a TrueToken with the given skip value.
    *
@@ -11,6 +13,15 @@ public class TrueToken extends Token {
    */
   public TrueToken(int skip) {
     super(skip);
+  }
+
+  /**
+   * Returns the value of this token.
+   *
+   * @return true
+   */
+  public Boolean getValue() {
+    return value;
   }
 
   /**
