@@ -2,15 +2,36 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
+/**
+ * Parses any JSON value string into the appropriate Token type.
+ */
 public class ValueParser {
+  /**
+   * Parsing states for JSON value processing.
+   */
   public enum Mode {
     Scanning, Array, False, Null, Number, Object, String, True, End
   }
 
+  /**
+   * Parses a JSON value string and returns the corresponding Token.
+   *
+   * @param value JSON value string to parse.
+   * @return Token representing the parsed value.
+   * @throws RuntimeException if the value is malformed.
+   */
   public static Token parse(String value) {
     return parse(value, null);
   }
 
+  /**
+   * Parses a JSON value string with custom delimiters and returns the corresponding Token.
+   *
+   * @param value JSON value string to parse.
+   * @param delimiters Regex pattern for delimiters.
+   * @return Token representing the parsed value.
+   * @throws RuntimeException if the value is malformed.
+   */
   public static Token parse(String value, String delimiters) {
     Mode mode = Mode.Scanning;
     int pos = 0;

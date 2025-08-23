@@ -3,11 +3,24 @@ package com.github.jsonjava;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+/**
+ * Parses JSON array strings into ArrayToken objects.
+ */
 public class ArrayParser {
+  /**
+   * Parsing states for JSON array processing.
+   */
   public enum Mode {
     Scanning, Element, Delimiter, End
   };
 
+  /**
+   * Parses a JSON array string and returns an ArrayToken.
+   *
+   * @param array JSON array string to parse.
+   * @return ArrayToken representing the parsed array.
+   * @throws RuntimeException if the array is malformed.
+   */
   public static ArrayToken parse(String array) {
     Mode mode = Mode.Scanning;
     int pos = 0;

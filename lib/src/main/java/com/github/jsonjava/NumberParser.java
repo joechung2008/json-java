@@ -2,15 +2,36 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
+/**
+ * Parses JSON number strings into NumberToken objects.
+ */
 public class NumberParser {
+    /**
+     * Parsing states for JSON number processing.
+     */
     public enum Mode {
         Scanning, Characteristic, CharacteristicDigit, DecimalPoint, Mantissa, Exponent, ExponentSign, ExponentFirstDigit, ExponentDigits, End
     };
 
+    /**
+     * Parses a JSON number string and returns a NumberToken.
+     *
+     * @param number JSON number string to parse.
+     * @return NumberToken representing the parsed number.
+     * @throws RuntimeException if the number is malformed.
+     */
     public static NumberToken parse(String number) {
         return parse(number, null);
     }
 
+    /**
+     * Parses a JSON number string with custom delimiters and returns a NumberToken.
+     *
+     * @param number JSON number string to parse.
+     * @param delimiters Regex pattern for delimiters.
+     * @return NumberToken representing the parsed number.
+     * @throws RuntimeException if the number is malformed.
+     */
     public static NumberToken parse(String number, String delimiters) {
         Mode mode = Mode.Scanning;
         int pos = 0;

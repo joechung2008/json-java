@@ -2,11 +2,24 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
+/**
+ * Parses JSON string values into StringToken objects.
+ */
 public class StringParser {
+  /**
+   * Parsing states for JSON string processing.
+   */
   public enum Mode {
     Scanning, Char, EscapedChar, Unicode, End
   };
 
+  /**
+   * Parses a JSON string value and returns a StringToken.
+   *
+   * @param string JSON string value to parse.
+   * @return StringToken representing the parsed string.
+   * @throws RuntimeException if the string is malformed.
+   */
   public static StringToken parse(String string) throws RuntimeException {
     Mode mode = Mode.Scanning;
     int pos = 0;

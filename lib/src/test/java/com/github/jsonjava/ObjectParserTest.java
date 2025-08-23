@@ -3,8 +3,14 @@ package com.github.jsonjava;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for ObjectParser and JSON object parsing.
+ */
 class ObjectParserTest {
 
+    /**
+     * Tests parsing an empty object.
+     */
     @Test
     void testEmptyObject() {
         Token token = JSONParser.parse("{}");
@@ -13,6 +19,9 @@ class ObjectParserTest {
         assertEquals(0, ((ObjectToken) token).members.length);
     }
 
+    /**
+     * Tests parsing an object with a single key-value pair.
+     */
     @Test
     void testSinglePairObject() {
         Token token = JSONParser.parse("{\"a\":1}");
@@ -23,6 +32,9 @@ class ObjectParserTest {
         assertEquals("1", ((ObjectToken) token).members[0].value.toString());
     }
 
+    /**
+     * Tests parsing an object with multiple key-value pairs.
+     */
     @Test
     void testMultiplePairsObject() {
         Token token = JSONParser.parse("{\"a\":1, \"b\":2}");
@@ -35,6 +47,9 @@ class ObjectParserTest {
         assertEquals("2", ((ObjectToken) token).members[1].value.toString());
     }
 
+    /**
+     * Tests parsing a nested object.
+     */
     @Test
     void testNestedObject() {
         Token token = JSONParser.parse("{\"a\": {\"b\": 2}}");
@@ -45,6 +60,9 @@ class ObjectParserTest {
         assertTrue(((ObjectToken) token).members[0].value.toString().contains("{\"b\":2}"));
     }
 
+    /**
+     * Tests parsing an object with whitespace.
+     */
     @Test
     void testObjectWithWhitespace() {
         Token token = JSONParser.parse("{ \"x\" : 10 , \"y\" : 20 }");
@@ -57,18 +75,27 @@ class ObjectParserTest {
         assertEquals("20", ((ObjectToken) token).members[1].value.toString());
     }
 
+    /**
+     * Tests parsing a malformed object missing a closing brace.
+     */
     @Test
     void testMalformedObjectMissingBrace() {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse("{\"a\":1"));
         assertTrue(ex.getMessage().contains("Incomplete pair expression"));
     }
 
+    /**
+     * Tests parsing a malformed object with a trailing comma.
+     */
     @Test
     void testMalformedObjectTrailingComma() {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse("{\"a\":1,}"));
         assertTrue(ex.getMessage().contains("Unexpected ','"));
     }
 
+    /**
+     * Tests parsing a malformed object with an invalid pair.
+     */
     @Test
     void testMalformedObjectInvalidPair() {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse("{a:1}"));

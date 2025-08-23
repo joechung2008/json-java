@@ -1,5 +1,9 @@
 package com.github.jsonjava;
 
+/**
+ * Command-line entry point for the JSON parser application. Reads JSON input from standard input
+ * and prints the parsed result.
+ */
 public class Main {
   /**
    * Main entry point.

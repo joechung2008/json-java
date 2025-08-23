@@ -3,8 +3,14 @@ package com.github.jsonjava;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for ValueParser and JSON value parsing.
+ */
 class ValueParserTest {
 
+    /**
+     * Tests parsing the JSON value 'false'.
+     */
     @Test
     void testParseFalse() {
         Token token = JSONParser.parse("false");
@@ -12,6 +18,9 @@ class ValueParserTest {
         assertEquals(5, token.skip);
     }
 
+    /**
+     * Tests parsing the JSON value 'null'.
+     */
     @Test
     void testParseNull() {
         Token token = JSONParser.parse("null");
@@ -19,6 +28,9 @@ class ValueParserTest {
         assertEquals(4, token.skip);
     }
 
+    /**
+     * Tests parsing the JSON value 'true'.
+     */
     @Test
     void testParseTrue() {
         Token token = JSONParser.parse("true");
@@ -26,6 +38,9 @@ class ValueParserTest {
         assertEquals(4, token.skip);
     }
 
+    /**
+     * Tests parsing a JSON number value.
+     */
     @Test
     void testParseNumber() {
         Token token = JSONParser.parse("123.45");
@@ -34,6 +49,9 @@ class ValueParserTest {
         assertEquals(123.45, ((NumberToken) token).value);
     }
 
+    /**
+     * Tests parsing a JSON string value.
+     */
     @Test
     void testParseString() {
         Token token = JSONParser.parse("\"hello\"");
@@ -42,6 +60,9 @@ class ValueParserTest {
         assertEquals("hello", ((StringToken) token).value);
     }
 
+    /**
+     * Tests parsing a JSON array value.
+     */
     @Test
     void testParseArray() {
         Token token = JSONParser.parse("[1,2]");
@@ -50,6 +71,9 @@ class ValueParserTest {
         assertEquals(2, ((ArrayToken) token).elements.length);
     }
 
+    /**
+     * Tests parsing a JSON object value.
+     */
     @Test
     void testParseObject() {
         Token token = JSONParser.parse("{\"a\":1}");
@@ -58,6 +82,9 @@ class ValueParserTest {
         assertEquals(1, ((ObjectToken) token).members.length);
     }
 
+    /**
+     * Tests parsing a JSON value with surrounding whitespace.
+     */
     @Test
     void testParseWhitespace() {
         Token token = JSONParser.parse("   true   ");
@@ -65,12 +92,18 @@ class ValueParserTest {
         assertEquals(7, token.skip);
     }
 
+    /**
+     * Tests parsing a malformed value with an unexpected character.
+     */
     @Test
     void testMalformedValueUnexpectedChar() {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse("?"));
         assertTrue(ex.getMessage().contains("Unexpected character"));
     }
 
+    /**
+     * Tests parsing an empty string as a value.
+     */
     @Test
     void testMalformedValueEmpty() {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse(""));

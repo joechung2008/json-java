@@ -2,11 +2,24 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
+/**
+ * Parses key-value pair strings in JSON objects into PairToken objects.
+ */
 public class PairParser {
+  /**
+   * Parsing states for JSON pair processing.
+   */
   public enum Mode {
     Scanning, Key, Colon, Value, End
   };
 
+  /**
+   * Parses a JSON key-value pair string and returns a PairToken.
+   *
+   * @param pair JSON key-value pair string to parse.
+   * @return PairToken representing the parsed pair.
+   * @throws RuntimeException if the pair is malformed.
+   */
   public static PairToken parse(String pair) {
     Mode mode = Mode.Scanning;
     int pos = 0;

@@ -3,11 +3,24 @@ package com.github.jsonjava;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+/**
+ * Parses JSON object strings into ObjectToken objects.
+ */
 public class ObjectParser {
+  /**
+   * Parsing states for JSON object processing.
+   */
   public enum Mode {
     Scanning, Pair, Delimiter, End
   };
 
+  /**
+   * Parses a JSON object string and returns an ObjectToken.
+   *
+   * @param object JSON object string to parse.
+   * @return ObjectToken representing the parsed object.
+   * @throws RuntimeException if the object is malformed.
+   */
   public static ObjectToken parse(String object) {
     Mode mode = Mode.Scanning;
     int pos = 0;
