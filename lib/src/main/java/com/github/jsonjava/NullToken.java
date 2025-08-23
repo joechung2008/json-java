@@ -14,6 +14,15 @@ public class NullToken extends Token {
   }
 
   /**
+   * Returns the value of this token.
+   *
+   * @return null
+   */
+  public Object getValue() {
+    return null;
+  }
+
+  /**
    * Returns the string representation of the JSON null token.
    *
    * @return "null"

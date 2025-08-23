@@ -14,6 +14,15 @@ public class TrueToken extends Token {
   }
 
   /**
+   * Returns the value of this token.
+   *
+   * @return true
+   */
+  public Boolean getValue() {
+    return true;
+  }
+
+  /**
    * Returns the string representation of the JSON true token.
    *
    * @return "true"

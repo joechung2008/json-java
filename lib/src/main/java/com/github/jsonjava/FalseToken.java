@@ -14,6 +14,15 @@ public class FalseToken extends Token {
   }
 
   /**
+   * Returns the value of this token.
+   *
+   * @return false
+   */
+  public Boolean getValue() {
+    return false;
+  }
+
+  /**
    * Returns the string representation of the JSON false token.
    *
    * @return "false"
