@@ -40,7 +40,7 @@ To start the Spring Boot API server, run:
 mvn spring-boot:run -pl api
 ```
 
-The API will be available at [http://localhost:8080](http://localhost:8080) by default.
+The API will be available at [http://localhost:8000](http://localhost:8000) by default.
 
 ## Using REST Client in VS Code
 
