@@ -45,6 +45,7 @@ nbdist/
 # VS Code files
 .vscode/
 !.vscode/extensions.json
+!.vscode/settings.json
 
 # Maven
 target/
