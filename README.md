@@ -37,7 +37,7 @@ mvn exec:java -pl cli
 To start the Spring Boot API server, run:
 
 ```sh
-mvn spring-boot:run -pl api
+mvn spring-boot:run -pl api-springboot
 ```
 
 The API will be available at [http://localhost:8000](http://localhost:8000) by default.

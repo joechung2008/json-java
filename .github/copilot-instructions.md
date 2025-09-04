@@ -4,26 +4,26 @@
 
 - **json-java** is a Java library and CLI for parsing and handling JSON data, inspired by [json.org](http://json.org).
 - The codebase is split into three Maven modules:
-  - `api/`: Spring Boot REST API for JSON parsing and validation
+  - `api-springboot/`: Spring Boot REST API for JSON parsing and validation
   - `cli/`: Command-line interface for interacting with the library
   - `lib/`: Core JSON parsing logic and utilities
 
 ## Key Directories & Files
 
-- `api/src/main/java/com/github/jsonjava/`: Spring Boot API entry point and controllers
-- `api/src/main/resources/`: API configuration files (e.g., `application.properties`)
+- `api-springboot/src/main/java/com/github/jsonjava/`: Spring Boot API entry point and controllers
+- `api-springboot/src/main/resources/`: API configuration files (e.g., `application.properties`)
 - `cli/src/main/java/com/github/jsonjava/`: CLI entry point and related code
 - `lib/src/main/java/com/github/jsonjava/`: Main JSON parser classes (e.g., `ArrayParser`, `ObjectParser`, `StringParser`, etc.)
 - `lib/src/test/java/com/github/jsonjava/`: Unit tests for core logic
 - `testdata/`: Contains `.rest` files for API/CLI testing with VS Code REST Client
-- `pom.xml`, `lib/pom.xml`, `cli/pom.xml`, `api/pom.xml`: Maven build configuration
+- `pom.xml`, `lib/pom.xml`, `cli/pom.xml`, `api-springboot/pom.xml`: Maven build configuration
 
 ## Build & Test Workflow
 
 - Build all modules: `mvn clean install`
 - Run all tests: `mvn test`
 - Run CLI: `mvn exec:java -pl cli`
-- Run Spring Boot API: `mvn spring-boot:run -pl api`
+- Run Spring Boot API: `mvn spring-boot:run -pl api-springboot`
   - The API will be available at [http://localhost:8080](http://localhost:8080) by default.
 - Test API/CLI with REST Client: Open `.rest` files in `testdata/` and use the REST Client extension
 
