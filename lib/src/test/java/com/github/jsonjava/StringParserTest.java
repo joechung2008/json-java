@@ -131,4 +131,94 @@ class StringParserTest {
                 assertThrows(RuntimeException.class, () -> JSONParser.parse("\"\\u00G1\""));
         assertTrue(ex.getMessage().contains("Unexpected Unicode code"));
     }
+
+    /**
+     * Tests parsing a string with a backspace escape.
+     */
+    @Test
+    void testStringWithBackspaceEscape() {
+        Token token = JSONParser.parse("\"a\\bb\"");
+        assertTrue(token instanceof StringToken);
+        assertEquals(6, token.skip);
+        assertEquals("a\bb", ((StringToken) token).value);
+    }
+
+    /**
+     * Tests parsing a string with a form feed escape.
+     */
+    @Test
+    void testStringWithFormFeedEscape() {
+        Token token = JSONParser.parse("\"a\\fb\"");
+        assertTrue(token instanceof StringToken);
+        assertEquals(6, token.skip);
+        assertEquals("a\fb", ((StringToken) token).value);
+    }
+
+    /**
+     * Tests parsing a string with a carriage return escape.
+     */
+    @Test
+    void testStringWithCarriageReturnEscape() {
+        Token token = JSONParser.parse("\"a\\rb\"");
+        assertTrue(token instanceof StringToken);
+        assertEquals(6, token.skip);
+        assertEquals("a\rb", ((StringToken) token).value);
+    }
+
+    /**
+     * Tests parsing a string with null Unicode escape.
+     */
+    @Test
+    void testStringWithNullUnicode() {
+        StringToken token = StringParser.parse("\"\\u0000\"");
+        assertEquals(8, token.skip);
+        assertEquals("\\u0000", token.value);
+    }
+
+    /**
+     * Tests parsing a string with maximum Unicode escape.
+     */
+    @Test
+    void testStringWithMaxUnicode() {
+        StringToken token = StringParser.parse("\"\\uFFFF\"");
+        assertEquals(8, token.skip);
+        assertEquals("\\uFFFF", token.value);
+    }
+
+    /**
+     * Tests parsing a string with multiple different escapes.
+     */
+    @Test
+    void testStringWithMultipleEscapes() {
+        Token token = JSONParser.parse("\"a\\b\\n\\u0041\\t\"");
+        assertTrue(token instanceof StringToken);
+        assertEquals(15, token.skip);
+        assertEquals("a\b\n\\u0041\t", ((StringToken) token).value);
+    }
+
+    /**
+     * Tests parsing a string with multiple Unicode escapes.
+     */
+    @Test
+    void testStringWithMultipleUnicode() {
+        StringToken token = StringParser.parse("\"\\u0041\\u0042\"");
+        assertEquals(14, token.skip);
+        assertEquals("\\u0041\\u0042", token.value);
+    }
+
+    /**
+     * Tests parsing a malformed string with incomplete Unicode.
+     */
+    @Test
+    void testMalformedStringIncompleteUnicode() {
+        assertThrows(RuntimeException.class, () -> JSONParser.parse("\"\\u00\""));
+    }
+
+    /**
+     * Tests parsing a malformed string with short Unicode.
+     */
+    @Test
+    void testMalformedStringShortUnicode() {
+        assertThrows(RuntimeException.class, () -> JSONParser.parse("\"\\u\""));
+    }
 }

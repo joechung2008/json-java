@@ -151,4 +151,84 @@ class NumberParserTest {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse(""));
         assertTrue(ex.getMessage().contains("value cannot be empty"));
     }
+
+    /**
+     * Tests parsing negative zero.
+     */
+    @Test
+    void testNegativeZero() {
+        Token token = JSONParser.parse("-0");
+        assertInstanceOf(NumberToken.class, token);
+        assertEquals(2, token.skip);
+        assertEquals(-0.0, ((NumberToken) token).value);
+        assertEquals("-0", ((NumberToken) token).valueAsString);
+    }
+
+    /**
+     * Tests parsing zero with an exponent.
+     */
+    @Test
+    void testZeroWithExponent() {
+        Token token = JSONParser.parse("0e5");
+        assertInstanceOf(NumberToken.class, token);
+        assertEquals(3, token.skip);
+        assertEquals(0.0, ((NumberToken) token).value);
+        assertEquals("0e5", ((NumberToken) token).valueAsString);
+    }
+
+    /**
+     * Tests parsing a number in scientific notation without a decimal point.
+     */
+    @Test
+    void testScientificWithoutDecimal() {
+        Token token = JSONParser.parse("123e4");
+        assertInstanceOf(NumberToken.class, token);
+        assertEquals(5, token.skip);
+        assertEquals(1230000.0, ((NumberToken) token).value);
+        assertEquals("123e4", ((NumberToken) token).valueAsString);
+    }
+
+    /**
+     * Tests parsing a number with a very large exponent.
+     */
+    @Test
+    void testLargeExponent() {
+        Token token = JSONParser.parse("1e308");
+        assertInstanceOf(NumberToken.class, token);
+        assertEquals(5, token.skip);
+        assertEquals(1e308, ((NumberToken) token).value);
+        assertEquals("1e308", ((NumberToken) token).valueAsString);
+    }
+
+    /**
+     * Tests parsing a number with a very small exponent.
+     */
+    @Test
+    void testSmallExponent() {
+        Token token = JSONParser.parse("1e-324");
+        assertInstanceOf(NumberToken.class, token);
+        assertEquals(6, token.skip);
+        assertEquals(0.0, ((NumberToken) token).value);
+        assertEquals("1e-324", ((NumberToken) token).valueAsString);
+    }
+
+    /**
+     * Tests parsing a malformed number with leading zeros.
+     */
+    @Test
+    void testLeadingZero() {
+        Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse("00"));
+        assertTrue(ex.getMessage().contains("Expected 'e' or 'E'"));
+    }
+
+    /**
+     * Tests parsing a number with a delimiter.
+     */
+    @Test
+    void testNumberWithDelimiter() {
+        NumberToken token = NumberParser.parse("123,", ",");
+        assertEquals(3, token.skip);
+        assertEquals(123.0, token.value);
+        assertEquals("123", token.valueAsString);
+    }
 }

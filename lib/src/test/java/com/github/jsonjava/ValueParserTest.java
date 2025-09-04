@@ -112,4 +112,39 @@ class ValueParserTest {
         Exception ex = assertThrows(RuntimeException.class, () -> JSONParser.parse(""));
         assertTrue(ex.getMessage().contains("value cannot be empty"));
     }
+
+    /**
+     * Tests parsing a partial 'true' value.
+     */
+    @Test
+    void testMalformedValuePartialTrue() {
+        assertThrows(RuntimeException.class, () -> JSONParser.parse("tru"));
+    }
+
+    /**
+     * Tests parsing a partial 'null' value.
+     */
+    @Test
+    void testMalformedValuePartialNull() {
+        assertThrows(RuntimeException.class, () -> JSONParser.parse("nul"));
+    }
+
+    /**
+     * Tests parsing a partial 'false' value.
+     */
+    @Test
+    void testMalformedValuePartialFalse() {
+        assertThrows(RuntimeException.class, () -> JSONParser.parse("fals"));
+    }
+
+    /**
+     * Tests parsing a value with a delimiter.
+     */
+    @Test
+    void testParseWithDelimiter() {
+        Token token = ValueParser.parse("123,", ",");
+        assertTrue(token instanceof NumberToken);
+        assertEquals(3, token.skip);
+        assertEquals(123.0, ((NumberToken) token).value);
+    }
 }
