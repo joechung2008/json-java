@@ -12,6 +12,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>api-springboot</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>com.github.jsonjava</groupId>
