@@ -56,6 +56,16 @@ After building, run the CLI with:
 mvn exec:java -pl cli
 ```
 
+## Run Micronaut API
+
+To start the Micronaut API server, run:
+
+```sh
+mvn exec:java -pl api-micronaut
+```
+
+The API will be available at [http://localhost:8000](http://localhost:8000) by default.
+
 ## Run Quarkus API
 
 To start the Quarkus API server in development mode (with hot reload), run:
