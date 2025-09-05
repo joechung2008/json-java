@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Represents a parsed JSON true token.
- */
+/** Represents a parsed JSON true token. */
 public class TrueToken extends Token {
   /**
    * Constructs a TrueToken with the given skip value.

@@ -16,6 +16,30 @@ MIT
 mvn clean install
 ```
 
+## Format
+
+This project uses [Spotless](https://github.com/diffplug/spotless) with Google Java Format for consistent code style.
+
+### Check Formatting
+
+To check if all Java files are properly formatted:
+
+```sh
+mvn spotless:check
+```
+
+This will fail the build if any files need formatting changes.
+
+### Fix Formatting
+
+To automatically format all Java files:
+
+```sh
+mvn spotless:apply
+```
+
+This will reformat all Java source and test files according to the project's style guidelines.
+
 ## Test
 
 If tests are present, run:

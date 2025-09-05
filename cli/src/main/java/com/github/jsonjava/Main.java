@@ -7,7 +7,7 @@ package com.github.jsonjava;
 public class Main {
   /**
    * Main entry point.
-   * 
+   *
    * @param args Command line arguments.
    */
   public static void main(final String[] args) {

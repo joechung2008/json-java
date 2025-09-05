@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Represents a parsed JSON null token.
- */
+/** Represents a parsed JSON null token. */
 public class NullToken extends Token {
   /**
    * Constructs a NullToken with the given skip value.

@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Represents a parsed JSON false token.
- */
+/** Represents a parsed JSON false token. */
 public class FalseToken extends Token {
   /**
    * Constructs a FalseToken with the given skip value.

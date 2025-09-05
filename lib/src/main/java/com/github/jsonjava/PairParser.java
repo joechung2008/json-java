@@ -2,15 +2,15 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
-/**
- * Parses key-value pair strings in JSON objects into PairToken objects.
- */
+/** Parses key-value pair strings in JSON objects into PairToken objects. */
 public class PairParser {
-  /**
-   * Parsing states for JSON pair processing.
-   */
+  /** Parsing states for JSON pair processing. */
   public enum Mode {
-    Scanning, Key, Colon, Value, End
+    Scanning,
+    Key,
+    Colon,
+    Value,
+    End
   };
 
   /**

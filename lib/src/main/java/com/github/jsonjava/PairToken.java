@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Represents a key-value pair token in a JSON object.
- */
+/** Represents a key-value pair token in a JSON object. */
 public class PairToken extends Token {
   /**
    * Constructs a PairToken with the given skip value, key, and value.
@@ -17,14 +15,10 @@ public class PairToken extends Token {
     this.value = value;
   }
 
-  /**
-   * The key of the pair.
-   */
+  /** The key of the pair. */
   public StringToken key;
 
-  /**
-   * The value of the pair.
-   */
+  /** The value of the pair. */
   public Token value;
 
   /**

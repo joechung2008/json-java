@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Represents a parsed JSON string token.
- */
+/** Represents a parsed JSON string token. */
 public class StringToken extends Token {
   /**
    * Constructs a StringToken with the given skip value and string value.
@@ -15,9 +13,7 @@ public class StringToken extends Token {
     this.value = value;
   }
 
-  /**
-   * The string value of the token.
-   */
+  /** The string value of the token. */
   public String value;
 
   /**

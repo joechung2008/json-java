@@ -2,15 +2,15 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
-/**
- * Parses JSON string values into StringToken objects.
- */
+/** Parses JSON string values into StringToken objects. */
 public class StringParser {
-  /**
-   * Parsing states for JSON string processing.
-   */
+  /** Parsing states for JSON string processing. */
   public enum Mode {
-    Scanning, Char, EscapedChar, Unicode, End
+    Scanning,
+    Char,
+    EscapedChar,
+    Unicode,
+    End
   };
 
   /**

@@ -3,9 +3,7 @@ package com.github.jsonjava;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-/**
- * Represents a parsed JSON object token.
- */
+/** Represents a parsed JSON object token. */
 public class ObjectToken extends Token {
   /**
    * Constructs an ObjectToken with the given skip value and members.
@@ -18,9 +16,7 @@ public class ObjectToken extends Token {
     this.members = members;
   }
 
-  /**
-   * The parsed members of the JSON object.
-   */
+  /** The parsed members of the JSON object. */
   public PairToken[] members;
 
   /**
@@ -30,7 +26,8 @@ public class ObjectToken extends Token {
    */
   @Override
   public String toString() {
-    return Arrays.asList(members).stream().map(member -> member.toString())
+    return Arrays.asList(members).stream()
+        .map(member -> member.toString())
         .collect(Collectors.joining(",", "{", "}"));
   }
 }

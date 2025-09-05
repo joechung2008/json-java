@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Entry point for parsing JSON strings into tokens.
- */
+/** Entry point for parsing JSON strings into tokens. */
 public class JSONParser {
   /**
    * Parses a JSON string and returns the root Token.

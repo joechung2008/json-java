@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Represents a parsed JSON number token.
- */
+/** Represents a parsed JSON number token. */
 public class NumberToken extends Token {
   /**
    * Constructs a NumberToken with the given skip value, numeric value, and string representation.
@@ -17,14 +15,10 @@ public class NumberToken extends Token {
     this.valueAsString = valueAsString;
   }
 
-  /**
-   * Numeric value of the parsed number.
-   */
+  /** Numeric value of the parsed number. */
   public double value;
 
-  /**
-   * String representation of the parsed number.
-   */
+  /** String representation of the parsed number. */
   public String valueAsString;
 
   /**

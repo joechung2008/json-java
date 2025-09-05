@@ -1,8 +1,6 @@
 package com.github.jsonjava;
 
-/**
- * Abstract base class for all JSON tokens.
- */
+/** Abstract base class for all JSON tokens. */
 public abstract class Token {
   /**
    * Constructs a Token with the given skip value.
@@ -13,8 +11,6 @@ public abstract class Token {
     this.skip = skip;
   }
 
-  /**
-   * Number of characters to skip after parsing this token.
-   */
+  /** Number of characters to skip after parsing this token. */
   public int skip;
 }

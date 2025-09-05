@@ -3,15 +3,14 @@ package com.github.jsonjava;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-/**
- * Parses JSON array strings into ArrayToken objects.
- */
+/** Parses JSON array strings into ArrayToken objects. */
 public class ArrayParser {
-  /**
-   * Parsing states for JSON array processing.
-   */
+  /** Parsing states for JSON array processing. */
   public enum Mode {
-    Scanning, Element, Delimiter, End
+    Scanning,
+    Element,
+    Delimiter,
+    End
   };
 
   /**

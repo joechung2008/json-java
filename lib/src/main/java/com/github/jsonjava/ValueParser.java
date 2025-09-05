@@ -2,15 +2,19 @@ package com.github.jsonjava;
 
 import java.util.regex.Pattern;
 
-/**
- * Parses any JSON value string into the appropriate Token type.
- */
+/** Parses any JSON value string into the appropriate Token type. */
 public class ValueParser {
-  /**
-   * Parsing states for JSON value processing.
-   */
+  /** Parsing states for JSON value processing. */
   public enum Mode {
-    Scanning, Array, False, Null, Number, Object, String, True, End
+    Scanning,
+    Array,
+    False,
+    Null,
+    Number,
+    Object,
+    String,
+    True,
+    End
   }
 
   /**
