@@ -8,6 +8,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>api-springboot</module>
+        <module>api-vertx</module>
         <module>lib</module>
         <module>cli</module>
     </modules>

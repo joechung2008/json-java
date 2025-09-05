@@ -42,6 +42,16 @@ mvn spring-boot:run -pl api-springboot
 
 The API will be available at [http://localhost:8000](http://localhost:8000) by default.
 
+## Run Vert.x API
+
+To start the Vert.x API server, run:
+
+```sh
+mvn exec:java -pl api-vertx
+```
+
+The API will be available at [http://localhost:8000](http://localhost:8000) by default.
+
 ## Using REST Client in VS Code
 
 Install the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension. Open any `.rest` file in `testdata/` and click "Send Request" above an HTTP request to send test data to APIs.
