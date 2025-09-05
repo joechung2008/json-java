@@ -13,6 +13,11 @@ import io.vertx.ext.web.handler.BodyHandler;
  */
 public class VertxApiMain extends AbstractVerticle {
 
+    /**
+     * Starts the Vert.x verticle and sets up the HTTP server with routes.
+     * @param startPromise the promise to complete when the verticle is started
+     * @throws Exception if an error occurs during startup
+     */
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
         HttpServer server = vertx.createHttpServer();
@@ -38,6 +43,10 @@ public class VertxApiMain extends AbstractVerticle {
         });
     }
 
+    /**
+     * Handles the /api/v1/parse POST request by parsing the JSON body.
+     * @param ctx the routing context
+     */
     private void handleParse(RoutingContext ctx) {
         try {
             // Get the request body as string
@@ -65,6 +74,10 @@ public class VertxApiMain extends AbstractVerticle {
         }
     }
 
+    /**
+     * Handles errors by sending an error response.
+     * @param ctx the routing context
+     */
     private void handleError(RoutingContext ctx) {
         int statusCode = ctx.statusCode() != -1 ? ctx.statusCode() : 500;
         String errorMessage = ctx.failure() != null ? ctx.failure().getMessage() : "Internal server error";
@@ -77,6 +90,10 @@ public class VertxApiMain extends AbstractVerticle {
             .end(Json.encode(errorResponse));
     }
 
+    /**
+     * Main method to run the Vert.x application standalone.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         // For running as a standalone application
         io.vertx.core.Vertx vertx = io.vertx.core.Vertx.vertx();
