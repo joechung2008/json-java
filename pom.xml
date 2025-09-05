@@ -32,7 +32,7 @@
                 <configuration>
                     <java>
                         <googleJavaFormat>
-                            <version>1.17.0</version>
+                            <version>1.28.0</version>
                         </googleJavaFormat>
                         <includes>
                             <include>src/**/*.java</include>
