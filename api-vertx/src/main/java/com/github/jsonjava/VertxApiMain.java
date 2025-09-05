@@ -41,7 +41,7 @@ public class VertxApiMain extends AbstractVerticle {
     private void handleParse(RoutingContext ctx) {
         try {
             // Get the request body as string
-            String body = ctx.getBodyAsString();
+            String body = ctx.body().asString();
 
             if (body == null || body.trim().isEmpty()) {
                 ctx.response()
