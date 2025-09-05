@@ -26,16 +26,16 @@ public class VertxApiMain extends AbstractVerticle {
     router.route().handler(BodyHandler.create());
 
     // API routes
-    router.post("/api/v1/parse").handler(this::handleParse);
+    router.post("/api/v1/parse").handler(ctx -> handleParse(ctx));
 
     // Global error handler
-    router.route().failureHandler(this::handleError);
+    router.route().failureHandler(ctx -> handleError(ctx));
 
     // Start the server
     server
         .requestHandler(router)
-        .listen(
-            8000,
+        .listen(8000)
+        .onComplete(
             http -> {
               if (http.succeeded()) {
                 startPromise.complete();
