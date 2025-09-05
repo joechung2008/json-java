@@ -3,7 +3,8 @@
 ## Project Overview
 
 - **json-java** is a Java library and CLI for parsing and handling JSON data, inspired by [json.org](http://json.org).
-- The codebase is split into four Maven modules:
+- The codebase is split into five Maven modules:
+  - `api-quarkus/`: Quarkus REST API for JSON parsing and validation
   - `api-springboot/`: Spring Boot REST API for JSON parsing and validation
   - `api-vertx/`: Vert.x REST API for JSON parsing and validation
   - `cli/`: Command-line interface for interacting with the library
@@ -11,6 +12,8 @@
 
 ## Key Directories & Files
 
+- `api-quarkus/src/main/java/com/github/jsonjava/`: Quarkus API entry point and resource classes
+- `api-quarkus/src/main/resources/`: Quarkus API configuration files (e.g., `application.properties`)
 - `api-springboot/src/main/java/com/github/jsonjava/`: Spring Boot API entry point and controllers
 - `api-springboot/src/main/resources/`: API configuration files (e.g., `application.properties`)
 - `api-vertx/src/main/java/com/github/jsonjava/`: Vert.x API entry point and handlers
@@ -18,13 +21,15 @@
 - `lib/src/main/java/com/github/jsonjava/`: Main JSON parser classes (e.g., `ArrayParser`, `ObjectParser`, `StringParser`, etc.)
 - `lib/src/test/java/com/github/jsonjava/`: Unit tests for core logic
 - `testdata/`: Contains `.rest` files for API/CLI testing with VS Code REST Client
-- `pom.xml`, `lib/pom.xml`, `cli/pom.xml`, `api-springboot/pom.xml`, `api-vertx/pom.xml`: Maven build configuration
+- `pom.xml`, `lib/pom.xml`, `cli/pom.xml`, `api-springboot/pom.xml`, `api-vertx/pom.xml`, `api-quarkus/pom.xml`: Maven build configuration
 
 ## Build & Test Workflow
 
 - Build all modules: `mvn clean install`
 - Run all tests: `mvn test`
 - Run CLI: `mvn exec:java -pl cli`
+- Run Quarkus API: `mvn quarkus:dev -pl api-quarkus` (development mode with hot reload)
+  - The API will be available at [http://localhost:8080](http://localhost:8080) by default.
 - Run Spring Boot API: `mvn spring-boot:run -pl api-springboot`
   - The API will be available at [http://localhost:8000](http://localhost:8000) by default.
 - Run Vert.x API: `mvn exec:java -pl api-vertx`
@@ -41,7 +46,7 @@
 
 ## Integration Points
 
-- **VS Code REST Client**: Used for sending requests to the CLI/API for testing. Both Spring Boot and Vert.x APIs use the same endpoint structure and work with the same `.rest` files.
+- **VS Code REST Client**: Used for sending requests to the CLI/API for testing. Quarkus, Spring Boot, and Vert.x APIs use the same endpoint structure and work with the same `.rest` files.
 - **Maven**: Handles builds, dependency management, and running the CLI.
 
 ## Example: Adding a New JSON Type
@@ -57,7 +62,10 @@
 - Use Maven for all build and test operations.
 - Reference `.rest` files in `testdata/` for example requests and expected responses.
 - Avoid introducing external dependencies unless explicitly required.
-- Both `api-springboot` and `api-vertx` provide equivalent functionality - choose based on preference for Spring Boot (familiar, annotation-based) vs Vert.x (reactive, programmatic configuration).
+- All three APIs (`api-springboot`, `api-vertx`, `api-quarkus`) provide equivalent functionality - choose based on preference:
+  - Quarkus (fast startup, low memory footprint, container-optimized)
+  - Spring Boot (familiar, annotation-based)
+  - Vert.x (reactive, programmatic configuration)
 
 ---
 

@@ -56,6 +56,23 @@ After building, run the CLI with:
 mvn exec:java -pl cli
 ```
 
+## Run Quarkus API
+
+To start the Quarkus API server in development mode (with hot reload), run:
+
+```sh
+mvn quarkus:dev -pl api-quarkus
+```
+
+For production mode, run:
+
+```sh
+mvn clean package -pl api-quarkus
+java -jar api-quarkus/target/quarkus-app/quarkus-run.jar
+```
+
+The API will be available at [http://localhost:8080](http://localhost:8080) by default.
+
 ## Run Spring Boot API
 
 To start the Spring Boot API server, run:
