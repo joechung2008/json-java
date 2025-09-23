@@ -158,9 +158,9 @@ public class NumberParser {
     }
 
     switch (mode) {
-      case Mode.Characteristic:
-      case Mode.ExponentFirstDigit:
-      case Mode.ExponentSign:
+      case Characteristic:
+      case ExponentFirstDigit:
+      case ExponentSign:
         throw new RuntimeException("Number ended prematurely");
 
       default:
