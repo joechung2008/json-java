@@ -11,7 +11,7 @@ public class ArrayParser {
     Element,
     Delimiter,
     End
-  };
+  }
 
   /**
    * Parses a JSON array string and returns an ArrayToken.
@@ -23,7 +23,7 @@ public class ArrayParser {
   public static ArrayToken parse(String array) {
     Mode mode = Mode.Scanning;
     int pos = 0;
-    ArrayList<Token> tokens = new ArrayList<Token>();
+    ArrayList<Token> tokens = new ArrayList<>();
 
     while (pos < array.length() && mode != Mode.End) {
       char ch = array.charAt(pos);
@@ -44,7 +44,7 @@ public class ArrayParser {
           if (Pattern.matches("[ \\n\\r\\t]", Character.toString(ch))) {
             pos++;
           } else if (ch == ']') {
-            if (tokens.size() > 0) {
+            if (!tokens.isEmpty()) {
               throw new RuntimeException("Unexpected ','");
             }
             pos++;
@@ -70,9 +70,6 @@ public class ArrayParser {
           } else {
             throw new RuntimeException(String.format("Expected ',' or ']', actual '%s'", ch));
           }
-          break;
-
-        case End:
           break;
 
         default:

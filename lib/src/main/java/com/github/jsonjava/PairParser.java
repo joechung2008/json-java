@@ -11,7 +11,7 @@ public class PairParser {
     Colon,
     Value,
     End
-  };
+  }
 
   /**
    * Parses a JSON key-value pair string and returns a PairToken.

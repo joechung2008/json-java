@@ -26,8 +26,8 @@ public class ArrayToken extends Token {
    */
   @Override
   public String toString() {
-    return Arrays.asList(this.elements).stream()
-        .map(element -> element.toString())
+    return Arrays.stream(this.elements)
+        .map(Token::toString)
         .collect(Collectors.joining(",", "[", "]"));
   }
 }

@@ -11,7 +11,7 @@ public class StringParser {
     EscapedChar,
     Unicode,
     End
-  };
+  }
 
   /**
    * Parses a JSON string value and returns a StringToken.
@@ -89,10 +89,14 @@ public class StringParser {
           break;
 
         case Unicode:
-          String slice = string.substring(pos, pos + 4);
-          if (slice.length() < 4) {
-            throw new RuntimeException(String.format("Incomplete Unicode code %s", slice));
+          // Ensure there are at least 4 characters remaining before taking a substring to avoid
+          // StringIndexOutOfBoundsException.
+          if (pos + 4 > string.length()) {
+            String remaining = string.substring(pos);
+            throw new RuntimeException(String.format("Incomplete Unicode code %s", remaining));
           }
+
+          String slice = string.substring(pos, pos + 4);
           try {
             Long.parseLong(slice, 16);
           } catch (NumberFormatException ex) {
@@ -101,9 +105,6 @@ public class StringParser {
           value.append(String.format("\\u%s", slice));
           pos += 4;
           mode = Mode.Char;
-          break;
-
-        case End:
           break;
 
         default:

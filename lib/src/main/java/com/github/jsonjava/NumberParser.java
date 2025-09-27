@@ -16,7 +16,7 @@ public class NumberParser {
     ExponentFirstDigit,
     ExponentDigits,
     End
-  };
+  }
 
   /**
    * Parses a JSON number string and returns a NumberToken.
@@ -122,10 +122,9 @@ public class NumberParser {
           if (ch == '+' || ch == '-') {
             valueAsString.append(ch);
             pos++;
-            mode = Mode.ExponentFirstDigit;
-          } else {
-            mode = Mode.ExponentFirstDigit;
           }
+
+          mode = Mode.ExponentFirstDigit;
           break;
 
         case ExponentFirstDigit:
@@ -149,23 +148,18 @@ public class NumberParser {
           }
           break;
 
-        case End:
-          break;
-
         default:
           throw new RuntimeException(String.format("Unexpected mode %s", mode));
       }
     }
 
-    switch (mode) {
-      case Characteristic:
-      case ExponentFirstDigit:
-      case ExponentSign:
-        throw new RuntimeException("Number ended prematurely");
-
-      default:
+    return switch (mode) {
+      case Mode.Characteristic, Mode.ExponentFirstDigit, Mode.ExponentSign ->
+          throw new RuntimeException("Number ended prematurely");
+      default -> {
         String string = valueAsString.toString();
-        return new NumberToken(pos, Double.parseDouble(string), string);
-    }
+        yield new NumberToken(pos, Double.parseDouble(string), string);
+      }
+    };
   }
 }

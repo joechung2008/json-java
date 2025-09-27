@@ -26,8 +26,8 @@ public class ObjectToken extends Token {
    */
   @Override
   public String toString() {
-    return Arrays.asList(members).stream()
-        .map(member -> member.toString())
+    return Arrays.stream(members)
+        .map(PairToken::toString)
         .collect(Collectors.joining(",", "{", "}"));
   }
 }

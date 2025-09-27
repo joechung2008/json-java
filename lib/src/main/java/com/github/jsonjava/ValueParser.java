@@ -117,9 +117,6 @@ public class ValueParser {
             throw new RuntimeException(String.format("Expected 'true', actual '%s'", slice));
           }
 
-        case End:
-          break;
-
         default:
           throw new RuntimeException(String.format("Unexpected mode %s", mode));
       }

@@ -11,7 +11,7 @@ public class ObjectParser {
     Pair,
     Delimiter,
     End
-  };
+  }
 
   /**
    * Parses a JSON object string and returns an ObjectToken.
@@ -23,7 +23,7 @@ public class ObjectParser {
   public static ObjectToken parse(String object) {
     Mode mode = Mode.Scanning;
     int pos = 0;
-    ArrayList<PairToken> tokens = new ArrayList<PairToken>();
+    ArrayList<PairToken> tokens = new ArrayList<>();
 
     while (pos < object.length() && mode != Mode.End) {
       char ch = object.charAt(pos);
@@ -44,7 +44,7 @@ public class ObjectParser {
           if (Pattern.matches("[ \\n\\r\\t]", Character.toString(ch))) {
             pos++;
           } else if (ch == '}') {
-            if (tokens.size() > 0) {
+            if (!tokens.isEmpty()) {
               throw new RuntimeException("Unexpected ','");
             }
             pos++;
@@ -70,9 +70,6 @@ public class ObjectParser {
           } else {
             throw new RuntimeException(String.format("Expected ',' or '}', actual '%s'", ch));
           }
-          break;
-
-        case End:
           break;
 
         default:
