@@ -19,11 +19,6 @@ public class ErrorResponse {
   /** The numeric error code for programmatic error handling */
   private int code;
 
-  /** Default constructor for JSON deserialization. Creates an empty ErrorResponse instance. */
-  public ErrorResponse() {
-    // Default constructor for JSON deserialization
-  }
-
   /**
    * Constructs an ErrorResponse with the given error message and code.
    *

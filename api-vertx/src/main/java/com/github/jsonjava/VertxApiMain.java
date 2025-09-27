@@ -15,10 +15,9 @@ public class VertxApiMain extends AbstractVerticle {
    * Starts the Vert.x verticle and sets up the HTTP server with routes.
    *
    * @param startPromise the promise to complete when the verticle is started
-   * @throws Exception if an error occurs during startup
    */
   @Override
-  public void start(Promise<Void> startPromise) throws Exception {
+  public void start(Promise<Void> startPromise) {
     HttpServer server = vertx.createHttpServer();
     Router router = Router.router(vertx);
 
@@ -26,10 +25,10 @@ public class VertxApiMain extends AbstractVerticle {
     router.route().handler(BodyHandler.create());
 
     // API routes
-    router.post("/api/v1/parse").handler(ctx -> handleParse(ctx));
+    router.post("/api/v1/parse").handler(this::handleParse);
 
     // Global error handler
-    router.route().failureHandler(ctx -> handleError(ctx));
+    router.route().failureHandler(this::handleError);
 
     // Start the server
     server

@@ -31,7 +31,6 @@ public class MicronautApiMain {
    * @param body the JSON string to parse, provided in the request body
    * @return HttpResponse containing either: - 200 OK with the parsed Token object if successful -
    *     400 Bad Request with ErrorResponse if parsing fails or input is invalid
-   * @throws Exception if an unexpected error occurs during processing
    */
   @Post("/parse")
   @Consumes(MediaType.TEXT_PLAIN)
