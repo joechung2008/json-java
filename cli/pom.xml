@@ -33,6 +33,42 @@
                     <mainClass>com.github.jsonjava.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.github.jsonjava.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+                <!-- Maven Shade Plugin to create a fat JAR with all dependencies -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                            <configuration>
+                                <createDependencyReducedPom>false</createDependencyReducedPom>
+                                <transformers>
+                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                        <mainClass>com.github.jsonjava.Main</mainClass>
+                                    </transformer>
+                                </transformers>
+                                <shadedArtifactAttached>false</shadedArtifactAttached>
+                                <finalName>cli-1.0-SNAPSHOT</finalName>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
         </plugins>
     </build>
 </project>
