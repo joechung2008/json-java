@@ -1,0 +1,33 @@
+# Maven build outputs
+**/target/
+
+# Git
+.git/
+.gitignore
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Documentation
+README.md
+LICENSE
+
+# CI/CD
+.github/
+
+# Test data
+testdata/
+
+# Temporary files
+*.tmp
+*.swp
+*~
