@@ -154,7 +154,7 @@ public class NumberParser {
     }
 
     return switch (mode) {
-      case Mode.Characteristic, Mode.ExponentFirstDigit, Mode.ExponentSign ->
+      case Characteristic, ExponentFirstDigit, ExponentSign ->
           throw new RuntimeException("Number ended prematurely");
       default -> {
         String string = valueAsString.toString();

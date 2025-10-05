@@ -13,8 +13,7 @@
     <packaging>jar</packaging>
     <name>api-quarkus</name>
     <properties>
-        <compiler-plugin.version>3.14.0</compiler-plugin.version>
-        <maven.compiler.release>24</maven.compiler.release>
+        <compiler-plugin.version>3.14.1</compiler-plugin.version>
         <maven.test.skip>true</maven.test.skip>
         <quarkus.console.enabled>false</quarkus.console.enabled>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
